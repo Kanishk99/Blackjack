@@ -11,11 +11,28 @@ function createDeck()
         card = {}; 
         card.suit = suits[suitsIndex];
         card.rank = ranks[ranksIndex];
+        card.value = setValue();
         deck.push(card);
 
     }
   }
 console.log(deck);
+}
+
+function setValue()
+{
+  if(card.rank=='J'||card.rank=='Q'||card.rank=='K')
+  {
+   return 10;
+  }
+  if(card.rank=='A')
+  {
+    return 'Nothing here yet';
+  }
+  else
+  {
+    return parseInt(card.rank);
+  }
 }
 
 createDeck();
