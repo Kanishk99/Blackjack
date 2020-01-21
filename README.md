@@ -1,4 +1,4 @@
 # Blackjack
-Blackjack game for project
+Blackjack game for project test
 
 Testing commits test2
