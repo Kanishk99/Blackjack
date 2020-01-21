@@ -32,15 +32,8 @@ function createDeck()
         card.rank = ranks[ranksIndex];
         card.value = setValue();
         deck.push(card);
-
     }
   }
-console.log(deck);
-}
-
-function playerHand()
-{
-  
 }
 
 function setValue()
@@ -59,7 +52,37 @@ function setValue()
   }
 }
 
+function playerHand()
+{
+
+  playerIndex = 0;
+  playerCards = new Array();
+  playerCards[playerIndex] = deck.pop();
+  playerIndex++;
+  console.log(playerCards);
+
+}
+
+function dealerHand()
+{
+  dealerIndex = 0;
+  dealerCards = new Array();
+  dealerCards = deck.pop();
+  dealerIndex++;
+  console.log(dealerCards);
+}
+
+
 createDeck();
 
 shuffle(deck);
+
 console.log(deck);
+
+playerHand();
+playerHand();
+
+console.log(deck);
+
+dealerHand();
+
