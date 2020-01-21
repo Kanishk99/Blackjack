@@ -2,7 +2,25 @@ deck = new Array();
 suits = ['spades','diamonds','clubs','hearts'];
 ranks = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 
-/*test*/
+
+/*
+ * https://stackoverflow.com/a/12646864
+ * Randomize array element order in-place.
+ * Using Durstenfeld shuffle algorithm.
+ */
+
+function shuffle(array)
+{
+  for (var i = array.length - 1; i > 0; i--) 
+  {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}
+
+
 function createDeck()
 {
   for(suitsIndex=0;suitsIndex<suits.length;suitsIndex++)
@@ -20,13 +38,18 @@ function createDeck()
 console.log(deck);
 }
 
+function playerHand()
+{
+  
+}
+
 function setValue()
 {
   if(card.rank=='J'||card.rank=='Q'||card.rank=='K')
   {
    return 10;
   }
-  if(card.rank=='A')
+  else if(card.rank=='A')
   {
     return 'Nothing here yet';
   }
@@ -37,3 +60,6 @@ function setValue()
 }
 
 createDeck();
+
+shuffle(deck);
+console.log(deck);
