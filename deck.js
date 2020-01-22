@@ -44,7 +44,7 @@ function setValue()
   }
   else if(card.rank=='A')
   {
-    return 'Nothing here yet';
+    return 1;
   }
   else
   {
@@ -54,35 +54,30 @@ function setValue()
 
 function playerHand()
 {
-
   playerIndex = 0;
   playerCards = new Array();
   playerCards[playerIndex] = deck.pop();
   playerIndex++;
+  document.getElementById("card").innerHTML = "test";
   console.log(playerCards);
-
 }
 
 function dealerHand()
 {
   dealerIndex = 0;
   dealerCards = new Array();
-  dealerCards = deck.pop();
+  dealerCards[dealerIndex] = deck.pop();
   dealerIndex++;
   console.log(dealerCards);
 }
 
+function hit()
+{
+  document.getElementById("card").innerHTML = "Hello world";
+}
+
 
 createDeck();
-
 shuffle(deck);
 
-console.log(deck);
-
-playerHand();
-playerHand();
-
-console.log(deck);
-
-dealerHand();
 
