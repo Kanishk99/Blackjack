@@ -54,30 +54,23 @@ function setValue()
 
 function playerHand()
 {
-  playerIndex = 0;
-  playerCards = new Array();
-  playerCards[playerIndex] = deck.pop();
-  playerIndex++;
-  document.getElementById("card").innerHTML = "test";
-  console.log(playerCards);
+  playerCards = {};
+  playerCards = deck.pop();
+  console.log(playerCards.suit);
 }
 
 function dealerHand()
 {
-  dealerIndex = 0;
-  dealerCards = new Array();
-  dealerCards[dealerIndex] = deck.pop();
-  dealerIndex++;
+  dealerCards = {};
+  dealerCards = deck.pop();
   console.log(dealerCards);
 }
 
-function hit()
-{
-  document.getElementById("card").innerHTML = "Hello world";
-}
 
 
 createDeck();
 shuffle(deck);
+playerHand();
+playerHand();
 
 
