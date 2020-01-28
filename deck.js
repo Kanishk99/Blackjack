@@ -66,11 +66,19 @@ function dealerHand()
   console.log(dealerCards);
 }
 
+function hitMe()
+{
+  playerHand();
+  document.getElementById("card").innerHTML += "<BR>";
+  document.getElementById("card").innerHTML += playerCards.rank + playerCards.suit;
+}
 
 
 createDeck();
 shuffle(deck);
 playerHand();
 playerHand();
+hitMe();
+hitMe();
 
 
