@@ -1,6 +1,8 @@
 deck = new Array();
 suits = ['spades','diamonds','clubs','hearts'];
 ranks = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+playerTotal = 0;
+dealerTotal = 0;
 
 
 /*
@@ -55,8 +57,27 @@ function setValue()
 function playerHand()
 {
   playerCards = {};
+  if(checkBust)
+  {
   playerCards = deck.pop();
+  playerTotal += playerCards.value;
+  checkBust();
+  }
   console.log(playerCards.suit);
+}
+
+function checkBust()
+{
+  if(playerTotal>21)
+  {
+    document.getElementById("card").innerHTML += "BUST!";
+    document.getElementById("hit").disabled = true;
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
 
 function dealerHand()
@@ -69,16 +90,16 @@ function dealerHand()
 function hitMe()
 {
   playerHand();
+  if(!isNaN(playerCards.rank))
+  {
   document.getElementById("card").innerHTML += "<BR>";
   document.getElementById("card").innerHTML += playerCards.rank + playerCards.suit;
+  document.getElementById("card").innerHTML += playerTotal;
+  }
 }
 
 
 createDeck();
 shuffle(deck);
-playerHand();
-playerHand();
-hitMe();
-hitMe();
 
 
