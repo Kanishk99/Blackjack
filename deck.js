@@ -44,7 +44,11 @@ function setValue()
   {
    return 10;
   }
-  else if(card.rank=='A')
+  else if(card.rank=='A' && playerTotal<21)
+  {
+    return 11;
+  }
+  else if(card.rank=='A' && playerTotal>21)
   {
     return 1;
   }
@@ -90,16 +94,14 @@ function dealerHand()
 function hitMe()
 {
   playerHand();
-  if(!isNaN(playerCards.rank))
-  {
   document.getElementById("card").innerHTML += "<BR>";
   document.getElementById("card").innerHTML += playerCards.rank + playerCards.suit;
   document.getElementById("card").innerHTML += playerTotal;
-  }
 }
 
 
 createDeck();
 shuffle(deck);
+
 
 
