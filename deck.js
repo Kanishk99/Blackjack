@@ -58,13 +58,18 @@ function setValue()
   }
 }
 
-function checkBust()
+function disableButtons()
+{
+  document.getElementById("hit").disabled = true;
+  document.getElementById("stand").disabled = true;
+}
+
+function checkBustPlayer()
 {
   if(playerTotal>21)
   {
     document.getElementById("playerSide").innerHTML += "<BR> BUST!";
-    document.getElementById("hit").disabled = true;
-    document.getElementById("stand").disabled = true;
+    disableButtons();
     return true;
   }
   else
@@ -73,16 +78,14 @@ function checkBust()
   }
 }
 
-
-
 function playerHand()
 {
   playerCards = {};
-  if(!checkBust())
+  if(!checkBustPlayer())
   {
   playerCards = deck.pop();
   playerTotal += playerCards.value;
-  checkBust();
+  checkBustPlayer();
   }
   console.log(playerCards.suit);
 }
@@ -97,19 +100,15 @@ function playerHit()
 
 function playerStand()
 {
-  document.getElementById("hit").disabled = true;
-  document.getElementById("stand").disabled = true;
+  disableButtons();
   dealerTurn();
 }
 
 function dealerHand()
 {
   dealerCards = {};
-  if(checkBust)
-  {
   dealerCards = deck.pop();
   dealerTotal += dealerCards.value;
-  }
   console.log(dealerCards.suit);
 }
 
@@ -122,14 +121,23 @@ function dealerTurn()
     document.getElementById("dealerSide").innerHTML += dealerCards.rank + dealerCards.suit;
     document.getElementById("dealerSide").innerHTML += " Total : " + dealerTotal;
   }
+  checkVictory();
+}
+
+function checkVictory()
+{
+  if(playerTotal > dealerTotal && !checkBustPlayer())
+  {
+    document.getElementById("victory").innerHTML += "Player wins!";
+  }
+  else
+  {
+    document.getElementById("victory").innerHTML += "Dealer wins!";
+  }
 }
 
 
 
-
-
-createDeck();
-shuffle(deck);
 
 
 
