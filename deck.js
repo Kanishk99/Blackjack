@@ -48,7 +48,7 @@ function setValue()
   {
     return 11;
   }
-  else if(card.rank=='A' && playerTotal>21)
+  else if(card.rank=='A' && playerTotal>21) /*Ace must be either 1 or 11 */
   {
     return 1;
   }
@@ -58,10 +58,27 @@ function setValue()
   }
 }
 
+function checkBust()
+{
+  if(playerTotal>21)
+  {
+    document.getElementById("playerSide").innerHTML += "<BR> BUST!";
+    document.getElementById("hit").disabled = true;
+    document.getElementById("stand").disabled = true;
+    return true;
+  }
+  else
+  {
+    return false; 
+  }
+}
+
+
+
 function playerHand()
 {
   playerCards = {};
-  if(checkBust)
+  if(!checkBust())
   {
   playerCards = deck.pop();
   playerTotal += playerCards.value;
@@ -70,34 +87,45 @@ function playerHand()
   console.log(playerCards.suit);
 }
 
-function checkBust()
+function playerHit()
 {
-  if(playerTotal>21)
-  {
-    document.getElementById("card").innerHTML += "BUST!";
-    document.getElementById("hit").disabled = true;
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+  playerHand();
+  document.getElementById("playerSide").innerHTML += "<BR>";
+  document.getElementById("playerSide").innerHTML += playerCards.rank + playerCards.suit;
+  document.getElementById("playerSide").innerHTML += " Total : " + playerTotal;
+}
+
+function playerStand()
+{
+  document.getElementById("hit").disabled = true;
+  document.getElementById("stand").disabled = true;
+  dealerTurn();
 }
 
 function dealerHand()
 {
   dealerCards = {};
+  if(checkBust)
+  {
   dealerCards = deck.pop();
-  console.log(dealerCards);
+  dealerTotal += dealerCards.value;
+  }
+  console.log(dealerCards.suit);
 }
 
-function hitMe()
+function dealerTurn()
 {
-  playerHand();
-  document.getElementById("card").innerHTML += "<BR>";
-  document.getElementById("card").innerHTML += playerCards.rank + playerCards.suit;
-  document.getElementById("card").innerHTML += playerTotal;
+  while(dealerTotal < 17)
+  {
+    dealerHand();
+    document.getElementById("dealerSide").innerHTML += "<BR>";
+    document.getElementById("dealerSide").innerHTML += dealerCards.rank + dealerCards.suit;
+    document.getElementById("dealerSide").innerHTML += " Total : " + dealerTotal;
+  }
 }
+
+
+
 
 
 createDeck();
