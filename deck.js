@@ -78,6 +78,19 @@ function checkBustPlayer()
   }
 }
 
+function checkBustDealer()
+{
+  if(dealerTotal>21)
+  {
+    document.getElementById("playerSide").innerHTML += "<BR>DEALER BUST!";
+    return true;
+  }
+  else
+  {
+    return false; 
+  }
+}
+
 function playerHand()
 {
   playerCards = {};
@@ -90,7 +103,7 @@ function playerHand()
   console.log(playerCards.suit);
 }
 
-function playerHit()
+function playerTurn()
 {
   playerHand();
   document.getElementById("playerSide").innerHTML += "<BR>";
@@ -107,9 +120,12 @@ function playerStand()
 function dealerHand()
 {
   dealerCards = {};
+  if(!checkBustDealer())
+  {
   dealerCards = deck.pop();
   dealerTotal += dealerCards.value;
   console.log(dealerCards.suit);
+  }
 }
 
 function dealerTurn()
@@ -130,13 +146,17 @@ function checkVictory()
   {
     document.getElementById("victory").innerHTML += "Player wins!";
   }
-  else
+  else if(dealerTotal > playerTotal && !checkBustDealer())
   {
     document.getElementById("victory").innerHTML += "Dealer wins!";
   }
 }
 
 
+createDeck();
+shuffle(deck);
+playerTurn();
+dealerTurn();
 
 
 
