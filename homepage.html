@@ -1,0 +1,87 @@
+<HTML>
+    <STYLE>
+        #dealerSide1 {
+            background-color: yellow;
+            position: relative;
+            top: 100px;
+            left: 100px;
+        }
+        #dealerSide2 {
+            background-color: yellow;
+            position: relative;
+            top: 100px;
+            left: 150px;
+        }
+        #dealerSide3 {
+            background-color: yellow;
+            position: relative;
+            top: 100px;
+            left: 150px;
+        }
+        #dealerSide4 {
+            background-color: yellow;
+            position: relative;
+            top: 100px;
+            left: 150px;
+        }
+        
+        #playerSide1 {
+            background-color: green;
+            position: relative;
+            top: 100px;
+            left: 100px;
+
+        }
+        #playerSide2 {
+            background-color: green;
+            position: relative;
+            top: 100px;
+            left: 100px;
+
+        }
+        #playerSide3 {
+            background-color: green;
+            position: relative;
+            top: 100px;
+            left: 100px;
+
+        }
+        #playerSide4 {
+            background-color: green;
+            position: relative;
+            top: 100px;
+            left: 100px;
+
+        }
+
+
+
+
+
+    </STYLE>
+<BODY>
+<script src="deck.js"></script>
+<FORM>
+    <input type = "button" onclick = "this.style.visibility='hidden'; startGame()" id="game" value="START"> 
+<div>
+    <div id=dealerSide1> </div>
+    <div id=dealerSide2> </div>
+    <div id=dealerSide3> </div>
+    <div id=dealerSide4> </div>
+</div>
+<div id= "gameButtons">
+    <input type = "button" onclick = "playerTurn()" id="hit" value="HIT">
+    <input type = "button" onclick = "playerStand()" id="stand" value="STAND">
+</div>
+<div>
+    <div id=playerSide1> </div>
+    <div id=playerSide2> </div>
+    <div id=playerSide3> </div>
+    <div id=playerSide4> </div>
+</div>
+<div>
+    <div id=victory> </div>
+</div>
+</FORM>
+</BODY>
+</HTML>              
