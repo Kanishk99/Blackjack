@@ -22,13 +22,13 @@ function shuffle(array) {
 }
 
 function createDeck() {
-  var img = document.createElement("img");
+  //var img = document.createElement("img");
   for (suitsIndex = 0; suitsIndex < suits.length; suitsIndex++) {
     for (ranksIndex = 0; ranksIndex < ranks.length; ranksIndex++) {
       card = {};
       card.suit = suits[suitsIndex];
       card.rank = ranks[ranksIndex];
-      //card.img.src = "D:\Kanishk\Desktop\git\Blackjack\Cards PNG\\" + card.rank + card.suit + ".png";
+      //card.image = "C:\Users\admin\Desktop\Blackjack-test\Cards PNG\\" + card.rank + card.suit + ".png";
       card.value = setValue();
       deck.push(card);
     }
@@ -88,9 +88,11 @@ function playerTurn() {
   playerHand();
   divPlayer = "playerSide" + divPlayerIncrement;
   document.getElementById(divPlayer).innerHTML += "<BR>";
-  document.getElementById(divPlayer).innerHTML += playerCards.rank + playerCards.suit;
+  document.getElementById(divPlayer).src = playerCards.image;
+  //document.getElementById(divPlayer).innerHTML += playerCards.rank + playerCards.suit;
+  img1 = document.createElement("img");
   //src.appendChild(img);
-  document.getElementById(divPlayer).innerHTML += " Total : " + playerTotal;
+  //document.getElementById(divPlayer).innerHTML += " Total : " + playerTotal;
   divPlayerIncrement++;
 }
 
@@ -121,7 +123,7 @@ function dealerTurn() {
 }
 
 function checkVictory() {
-  if (playerTotal > dealerTotal && !checkBustPlayer()) {
+  if (playerTotal > dealerTotal && (!checkBustPlayer() || !checkBustDealer())) {
     document.getElementById("victory").innerHTML += "Player wins!";
   } else if (dealerTotal > playerTotal && (!checkBustDealer() || checkBustPlayer())) {
     document.getElementById("victory").innerHTML += "Dealer wins!";
