@@ -70,8 +70,12 @@
         top: -200px;
     }
     #victory{
-        background-color: red;
+        background-color: lightblue;
         position: relative;
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
     }
 </STYLE>
 
@@ -81,23 +85,23 @@
         <input type="button" onclick="this.style.visibility='hidden'; startGame()" id="game" value="START">
         <div>
             <div>
-                <div id=dealerSide1> D1 </div>
-                <div id=dealerSide2> D2 </div>
-                <div id=dealerSide3> D3 </div>
-                <div id=dealerSide4> D4 </div>
+                <div id=dealerSide1>  </div>
+                <div id=dealerSide2>  </div>
+                <div id=dealerSide3>  </div>
+                <div id=dealerSide4>  </div>
             </div>
             <div id="gameButtons">
                 <input type="button" onclick="playerTurn()" id="hit" value="HIT" disabled>
                 <input type="button" onclick="playerStand()" id="stand" value="STAND" disabled>
             </div>
             <div>
-                <div id=playerSide1> P1 </div>
-                <div id=playerSide2> P2 </div>
-                <div id=playerSide3> P3 </div>
-                <div id=playerSide4> P4 </div>
+                <div id=playerSide1>  </div>
+                <div id=playerSide2>  </div>
+                <div id=playerSide3>  </div>
+                <div id=playerSide4>  </div>
             </div>
             <div>
-                <div id=victory> Victory here </div>
+                <div id=victory> VictoryHere</div>
             </div>
         </div>
     </FORM>

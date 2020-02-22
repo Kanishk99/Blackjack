@@ -28,7 +28,7 @@ function createDeck() {
       card = {};
       card.suit = suits[suitsIndex];
       card.rank = ranks[ranksIndex];
-      //card.image = "C:\Users\admin\Desktop\Blackjack-test\Cards PNG\\" + card.rank + card.suit + ".png";
+      card.imagePath = "D:\\Kanishk\\Desktop\\git\\Blackjack\\Cards PNG\\" + card.rank + card.suit + ".png";
       card.value = setValue();
       deck.push(card);
     }
@@ -81,18 +81,21 @@ function playerHand() {
     playerTotal += playerCards.value;
     checkBustPlayer();
   }
-  console.log(playerCards.suit);
+}
+
+function setImage(img, setDiv){
+  cardImage = document.createElement("img");
+  cardImage.src = img;
+  document.getElementById(setDiv).appendChild(cardImage);
 }
 
 function playerTurn() {
   playerHand();
   divPlayer = "playerSide" + divPlayerIncrement;
-  document.getElementById(divPlayer).innerHTML += "<BR>";
-  document.getElementById(divPlayer).src = playerCards.image;
-  //document.getElementById(divPlayer).innerHTML += playerCards.rank + playerCards.suit;
-  img1 = document.createElement("img");
-  //src.appendChild(img);
-  //document.getElementById(divPlayer).innerHTML += " Total : " + playerTotal;
+  setImage(playerCards.imagePath,divPlayer);
+  /*document.getElementById(divPlayer).innerHTML += "<BR>";
+  document.getElementById(divPlayer).innerHTML += playerCards.rank + playerCards.suit;
+  document.getElementById(divPlayer).innerHTML += " Total : " + playerTotal;*/
   divPlayerIncrement++;
 }
 
@@ -116,6 +119,7 @@ function dealerHand() {
 function dealerTurn() {
   dealerHand();
   divDealer = "dealerSide" + divDealerIncrement;
+  setImage(dealerCards.imagePath,divDealer);
   document.getElementById(divDealer).innerHTML += "<BR>";
   document.getElementById(divDealer).innerHTML += dealerCards.rank + dealerCards.suit;
   document.getElementById(divDealer).innerHTML += " Total : " + dealerTotal;
@@ -139,3 +143,8 @@ function startGame() {
   dealerTurn();
   playerTurn();
 }
+
+createDeck();
+shuffle(deck);
+playerTurn();
+console.log(playerCards.imagePath);
