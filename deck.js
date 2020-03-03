@@ -94,8 +94,8 @@ function playerTurn() {
   divPlayer = "playerSide" + divPlayerIncrement;
   setImage(playerCards.imagePath,divPlayer);
   /*document.getElementById(divPlayer).innerHTML += "<BR>";
-  document.getElementById(divPlayer).innerHTML += playerCards.rank + playerCards.suit;
-  document.getElementById(divPlayer).innerHTML += " Total : " + playerTotal;*/
+  document.getElementById(divPlayer).innerHTML += playerCards.rank + playerCards.suit;*/
+  document.getElementById(divPlayer).innerHTML += " Total : " + playerTotal;
   divPlayerIncrement++;
 }
 
@@ -120,14 +120,14 @@ function dealerTurn() {
   dealerHand();
   divDealer = "dealerSide" + divDealerIncrement;
   setImage(dealerCards.imagePath,divDealer);
-  document.getElementById(divDealer).innerHTML += "<BR>";
-  document.getElementById(divDealer).innerHTML += dealerCards.rank + dealerCards.suit;
+  /*document.getElementById(divDealer).innerHTML += "<BR>";
+  document.getElementById(divDealer).innerHTML += dealerCards.rank + dealerCards.suit;*/
   document.getElementById(divDealer).innerHTML += " Total : " + dealerTotal;
   divDealerIncrement++;
 }
 
 function checkVictory() {
-  if (playerTotal > dealerTotal && (!checkBustPlayer() || !checkBustDealer())) {
+  if (playerTotal > dealerTotal && (!checkBustPlayer() || checkBustDealer())) {
     document.getElementById("victory").innerHTML += "Player wins!";
   } else if (dealerTotal > playerTotal && (!checkBustDealer() || checkBustPlayer())) {
     document.getElementById("victory").innerHTML += "Dealer wins!";
@@ -144,7 +144,4 @@ function startGame() {
   playerTurn();
 }
 
-createDeck();
-shuffle(deck);
-playerTurn();
-console.log(playerCards.imagePath);
+
