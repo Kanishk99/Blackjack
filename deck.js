@@ -28,7 +28,7 @@ function createDeck() {
       card = {};
       card.suit = suits[suitsIndex];
       card.rank = ranks[ranksIndex];
-      card.imagePath = "D:\\Kanishk\\Desktop\\git\\Blackjack\\Cards PNG\\" + card.rank + card.suit + ".png";
+      card.imagePath = "Cards PNG\\" + card.rank + card.suit + ".png";
       card.value = setValue();
       deck.push(card);
     }
@@ -79,7 +79,6 @@ function playerHand() {
   if (!checkBustPlayer()) {
     playerCards = deck.pop();
     playerTotal += playerCards.value;
-    checkBustPlayer();
   }
 }
 
@@ -97,6 +96,7 @@ function playerTurn() {
   document.getElementById(divPlayer).innerHTML += playerCards.rank + playerCards.suit;*/
   document.getElementById(divPlayer).innerHTML += " Total : " + playerTotal;
   divPlayerIncrement++;
+  checkBustPlayer();
 }
 
 function playerStand() {
@@ -124,22 +124,35 @@ function dealerTurn() {
   document.getElementById(divDealer).innerHTML += dealerCards.rank + dealerCards.suit;*/
   document.getElementById(divDealer).innerHTML += " Total : " + dealerTotal;
   divDealerIncrement++;
+  checkBustDealer();
 }
 
 function checkVictory() {
-  if (playerTotal > dealerTotal && (!checkBustPlayer() || checkBustDealer())) {
+  if (playerTotal>21)
+  {
+    document.getElementById("victory").innerHTML += "Dealer wins!";
+  }
+  else if (dealerTotal>21)
+  {
     document.getElementById("victory").innerHTML += "Player wins!";
-  } else if (dealerTotal > playerTotal && (!checkBustDealer() || checkBustPlayer())) {
+  }
+  else if (playerTotal > dealerTotal && (!checkBustPlayer()))  {  
+    document.getElementById("victory").innerHTML += "Player wins!";
+  } else if (dealerTotal > playerTotal && (!checkBustDealer())) {
     document.getElementById("victory").innerHTML += "Dealer wins!";
   } else if (playerTotal == dealerTotal) {
     document.getElementById("victory").innerHTML += "PUSH!";
-  }
+    //Game resets -> Deal beings again with previous money added to total
+  } 
+
 }
 
 function startGame() {
   disableButtons(false);
   createDeck();
   shuffle(deck);
+  dealerTurn();
+  playerTurn();
   dealerTurn();
   playerTurn();
 }
