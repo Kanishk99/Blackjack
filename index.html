@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+    <script src="deck.js"></script>
+</head>
+
+<body>
+    <header>
+        <img class="logo" src="#" alt="Logo here">
+        <nav class="navbar">
+            <ul class="nav_links">
+                <li class="home"><a href="#">HOME</a></li>
+                <li class="tutorial"><a href="#">RULES</a></li>
+                <li class="about"><a href="#">ABOUT US</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="#"><button>Login</button></a>
+    </header>
+    <div class="game_space">
+        <div class="game_part">
+            <button onclick="this.style.visibility='hidden'; startGame()" id="game" class="play">PLAY</Button>
+
+            <div>
+                <div id=dealerSide1 class="dCards"> </div>
+                <div id=dealerSide2 class="dCards"> </div>
+                <div id=dealerSide3 class="dCards"> </div>
+                <div id=dealerSide4 class="dCards"> </div>
+                <div id=dealerSide5 class="dCards"> </div>
+                <div id=dealerSide6 class="dCards"> </div>
+            </div>
+
+            <button onclick="playerTurn()" id="hit" value="HIT" class="action">HIT</button>
+            <button onclick="playerStand()" id="stand" value="STAND" class="action">STAND</button>
+            <button onclick="startGame()" id="retry" value="RETRY" class="retry">RETRY</button>
+
+            <div>
+                <div id=playerSide1 class="pCards"> </div>
+                <div id=playerSide2 class="pCards"> </div>
+                <div id=playerSide3 class="pCards"> </div>
+                <div id=playerSide4 class="pCards"> </div>
+                <div id=playerSide5 class="pCards"> </div>
+                <div id=playerSide6 class="pCards"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="rule_nav">
+        <span class="rulesnav, position2, rborder">
+            <ul>
+                <li><u>Cards</u></li>
+                <li><u>Hitting</u></li>
+                <li><u>Standing</u></li>
+                <li><u>Surrender</u></li>
+            </ul>
+        </span>
+        <span class="rules">
+            <h2>THE BASIC RULES WHEN PLAYING BLACKJACK:</h2>
+            <p> </p>
+            <ol>
+                <li>
+                    <p>Blackjack starts with players making bets.</p>
+                </li>
+                <li>
+                    <p>Dealer deals 2 cards to the players and two to himself (1 card face up, the other face down).
+                    </p>
+                </li>
+                <li>
+                    <p>Blackjack card values: All cards count their face value in blackjack. Picture cards count as
+                        10 and the ace<br> can count as either 1 or 11. Card suits have no meaning in blackjack. The
+                        total of any hand is the sum of the card values in the hand</p>
+                </li>
+                <li>
+                    <p>Players must decide whether to stand, hit, surrender, double down, or split.</p>
+                </li>
+                <li>
+                    <p>The dealer acts last and must hit on 16 or less and stand on 17 through 21.</p>
+                </li>
+                <li>
+                    <p>Players win when their hand totals higher than dealer's hand, or they have 21 or less when
+                        the dealer busts<br> (i.e., exceeds 21)</p>
+                </li>
+            </ol>
+        </span>
+
+        <span class="rules">
+            <h1>Card Rules</h1>
+
+
+            <p class=>All cards count their face value in blackjack. Picture cards count as 10
+                and the ace can count as either 1 or 11.<br> Card suits have no meaning in blackjack.
+                The total of any hand is the sum of the card values in the hand. A hand<br> containing a 4-5-8
+                totals 17.
+                Another containing a queen-5 totals 15. It is always assumed that the ace counts as<br> 11 unless so
+                doing
+                would make your hand total exceed 21, in which case the ace reverts to a value of 1.</p>
+
+        </span>
+
+        <span class="rules">
+            <h1>Hitting Rules</h1>
+
+            <p>This means you want the dealer to give another card to your hand. In shoe games,
+                indicate to the dealer that you<br> want a hit by making a beckoning motion with your finger
+                or tapping the table behind your cards with your finger.<br> In hand-held games, scratch the
+                edges of the cards in your hand lightly on the felt </p>
+        </span>
+
+        <span class="rules">
+            <h1>Standing Rules</h1>
+
+            <p>This means you are satisfied with the total of the hand and want to stand with the
+                cards you have. In shoe games,<br> indicate that you want to stand by waving your hand
+                over the cards, palm down. In hand-held games, tuck your<br> cards under the chips that
+                you have in the betting box.</p>
+        </span>
+
+        <span class="rules">
+            <h1>Surrender</h1>
+
+            <p>This playing option is sometimes permitted. It allows a player to forfeit the hand
+                immediately with an automatic<br> loss of half the original bet. In most venues, players
+                can surrender their initial two-card hand only after the dealer has<br> checked his cards and
+                ascertained that he doesn't have a blackjack (known as late surrender). Once a
+                player draws a card,<br> the surrender option is no longer available. If the dealer has
+                a blackjack hand, then surrender is not available.</p>
+        </span>
+
+        </section>
+
+    </div>
+
+
+</body>

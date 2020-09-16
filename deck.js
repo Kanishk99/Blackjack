@@ -6,13 +6,13 @@ dealerTotal = 0;
 divDealerIncrement = 1;
 divPlayerIncrement = 1;
 
-/*
- * https://stackoverflow.com/a/12646864
- * Randomize array element order in-place.
- * Using Durstenfeld shuffle algorithm.
- */
 
 function shuffle(array) {
+  /*
+   * https://stackoverflow.com/a/12646864
+   * Randomize array element order in-place.
+   * Using Durstenfeld shuffle algorithm.
+   */
   for (var i = array.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
     var temp = array[i];
@@ -30,6 +30,7 @@ function createDeck() {
       card.rank = ranks[ranksIndex];
       card.imagePath = "Cards PNG\\" + card.rank + card.suit + ".png";
       card.value = setValue();
+      //document.getElementById(card).className += "cards";
       deck.push(card);
     }
   }
@@ -41,22 +42,31 @@ function setValue() {
   } else if (card.rank == "A" && playerTotal < 21) {
     return 11;
   } else if (card.rank == "A" && playerTotal > 21) {
-    /*Ace must be either 1 or 11 */
-    return 1;
+    if (playerTotal > 21)
+      return 1;
+    else {
+      /*Ace must be either 1 or 11 */
+      return 10;
+    }
   } else {
     return parseInt(card.rank);
   }
 }
 
-function disableButtons(bool) {
-  document.getElementById("hit").disabled = bool;
-  document.getElementById("stand").disabled = bool;
+function disableButtons(str) {
+  document.getElementById("hit").style.visibility = str;
+  document.getElementById("stand").style.visibility = str;
+  if (str == "hidden") {
+    document.getElementById("retry").style.visibility = "visible";
+  } else {
+    document.getElementById("retry").style.visibility = "hidden";
+  }
 }
 
 function checkBustPlayer() {
   if (playerTotal > 21) {
     //document.getElementById("playerSide").innerHTML += "<BR> BUST!";
-    disableButtons(true);
+    disableButtons("hidden");
     checkVictory();
     return true;
   } else {
@@ -82,16 +92,17 @@ function playerHand() {
   }
 }
 
-function setImage(img, setDiv){
+function setImage(img, setDiv) {
   cardImage = document.createElement("img");
   cardImage.src = img;
   document.getElementById(setDiv).appendChild(cardImage);
+
 }
 
 function playerTurn() {
   playerHand();
   divPlayer = "playerSide" + divPlayerIncrement;
-  setImage(playerCards.imagePath,divPlayer);
+  setImage(playerCards.imagePath, divPlayer);
   /*document.getElementById(divPlayer).innerHTML += "<BR>";
   document.getElementById(divPlayer).innerHTML += playerCards.rank + playerCards.suit;*/
   document.getElementById(divPlayer).innerHTML += " Total : " + playerTotal;
@@ -100,7 +111,7 @@ function playerTurn() {
 }
 
 function playerStand() {
-  disableButtons(true);
+  disableButtons("hidden");
   while (dealerTotal < 17) {
     dealerTurn();
   }
@@ -119,7 +130,7 @@ function dealerHand() {
 function dealerTurn() {
   dealerHand();
   divDealer = "dealerSide" + divDealerIncrement;
-  setImage(dealerCards.imagePath,divDealer);
+  setImage(dealerCards.imagePath, divDealer);
   /*document.getElementById(divDealer).innerHTML += "<BR>";
   document.getElementById(divDealer).innerHTML += dealerCards.rank + dealerCards.suit;*/
   document.getElementById(divDealer).innerHTML += " Total : " + dealerTotal;
@@ -128,27 +139,23 @@ function dealerTurn() {
 }
 
 function checkVictory() {
-  if (playerTotal>21)
-  {
+  if (playerTotal > 21) {
     document.getElementById("victory").innerHTML += "Dealer wins!";
-  }
-  else if (dealerTotal>21)
-  {
+  } else if (dealerTotal > 21) {
     document.getElementById("victory").innerHTML += "Player wins!";
-  }
-  else if (playerTotal > dealerTotal && (!checkBustPlayer()))  {  
+  } else if (playerTotal > dealerTotal && (!checkBustPlayer())) {
     document.getElementById("victory").innerHTML += "Player wins!";
   } else if (dealerTotal > playerTotal && (!checkBustDealer())) {
     document.getElementById("victory").innerHTML += "Dealer wins!";
   } else if (playerTotal == dealerTotal) {
     document.getElementById("victory").innerHTML += "PUSH!";
     //Game resets -> Deal beings again with previous money added to total
-  } 
+  }
 
 }
 
 function startGame() {
-  disableButtons(false);
+  disableButtons("visible");
   createDeck();
   shuffle(deck);
   dealerTurn();
@@ -156,5 +163,3 @@ function startGame() {
   dealerTurn();
   playerTurn();
 }
-
-

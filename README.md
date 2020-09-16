@@ -1,2 +1,1 @@
-# Blackjack
-Blackjack game for project
+# Minor-project
