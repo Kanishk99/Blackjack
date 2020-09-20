@@ -1,20 +1,23 @@
 @font-face {
     /*https://famfonts.com/games/red-dead-redemption/*/
     font-family: "RedDead";
-    src: url("fonts/CHINESER.TTF"); 
+    src: url("fonts/CHINESER.TTF");
 }
 
 body {
+
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     background-color: black;
 }
 
-.navbar li, a, button {
+.navbar li,
+a,
+button {
     font-family: "RedDead", Arial;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 30px;
     color: whitesmoke;
     text-decoration: none;
 }
@@ -23,7 +26,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
+    padding: 2% 10%;
 }
 
 .logo {
@@ -33,7 +36,7 @@ header {
 
 nav {
     order: 1;
-    
+
 }
 
 .nav_links {
@@ -50,14 +53,31 @@ nav {
 }
 
 .nav_links li a:hover {
-    color:  rgba(204, 0, 0, .75);
+    color: rgba(204, 0, 0, .75);
 }
 
 .cta {
-        order: 3;
+    order: 3;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
 }
 
-button {
+.list-login{
+    padding-left:100px;
+}
+
+.login {
+    padding: 9px 25px;
+    background-color: rgba(204, 0, 0, .75);
+    color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+}
+
+button { /*Default button, change to class name*/
     padding: 9px 25px;
     background-color: rgba(204, 0, 0, .75);
     color: black;
@@ -71,7 +91,114 @@ button:hover {
     color: white;
 }
 
-.game_space{
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    padding-top: 60px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0, 0.4);
+
+}
+
+.model-content {
+    border-radius: 10px;
+    width: 25%;
+    height: 80%;
+    background-image: url('WebPhotos\\loginbg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+}
+
+.close-sign {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+.close {
+    font-size: 60px;
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: black;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    cursor: pointer;
+    color: red;
+}
+
+
+.profile {
+    position: relative;
+    left: 45px;
+    top: 20px;
+    border: none;
+    margin: 12% 10%;
+    border-radius: 10%;
+    width: 50%;
+
+}
+
+label {
+    font-size: 24px;
+    padding: 12px 20px;
+}
+
+input[type=text],
+input[type=password] {
+    background-color: rgba(192, 92, 11, 0.281);
+    font-size: 14px;
+    width: 80%;
+    padding: 12px 20px;
+    margin-top: 8px;
+    margin-left: 4%;
+}
+
+.loginbtn {
+    background-color: saddlebrown;
+    font-size: 20px;
+    position: relative;
+    left: 25px;
+    top: 20px;
+}
+
+.cancelbtn {
+    background-color: saddlebrown;
+    font-size: 20px;
+    position: relative;
+    left: 30%;
+    top: 20px;
+}
+
+.regi-position {
+    color: red;
+    font-size: 25px;
+    position: relative;
+    right: 7%;
+    top: 300px;
+
+}
+
+.regi-position:hover {
+    color: white;
+    cursor: pointer;
+    background-color: saddlebrown;
+
+}
+
+
+.game_space {
     background-image: url("WebPhotos\\table_bg1.png");
     height: 1080px;
     width: 100%;
@@ -82,7 +209,7 @@ button:hover {
     display: flex;
 }
 
-.game_part{
+.game_part {
     position: relative;
     align-content: center;
     left: 50%;
@@ -91,22 +218,10 @@ button:hover {
     margin-left: -100px;
 }
 
-img {
-    max-width: 10%;
-    max-height: 10%; 
-    position: relative;
-    display: table;
-}
 
 
 
-.dCards {
 
-}
-
-.pCards {
-
-}
 
 .play {
     padding: 9px 25px;
@@ -136,19 +251,24 @@ img {
     display: block;
     width: 70%;
     height: 50%;
-    margin-left: 40px;
+    margin-left: 24px;
     color: white;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .rulesnav {
 
     display: block;
     float: right;
-    margin: 200px 100px;
+    margin: 5% 6%;
     padding: 10px;
-    font-size: 24px;
+    font-size: 28px;
     color: blue;
+}
+
+.myhover {
+    cursor: pointer;
+    color: yellow;
 }
 
 .position2 {
@@ -162,4 +282,45 @@ img {
     border-radius: 5%;
     border-color: lawngreen;
 
+}
+
+
+
+
+.cards-rules {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    padding-top: 60px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0, 0.4);
+
+}
+
+.cards-rules-content {
+    border-radius: 10px;
+    width: 85%;
+    height: 85%;
+    background-image: url('WebPhotos\\loginbg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+
+}
+
+
+.rules_img {
+    position: relative;
+    left: 45px;
+    top: 0px;
+    border: none;
+    margin: 2% 1%;
+    border-radius: 10%;
+    width: 20%;
 }
