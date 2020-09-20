@@ -22,7 +22,7 @@
                 <li class="about"><a href="#">ABOUT US</a></li>
             </ul>
         </nav>
-                <?php
+        <?php
                 if (isset($_SESSION['username'])) {
                     echo "<a class='cta' href='database\\logout.php'><button class='login' style='width:auto'>";
                     echo "LOGOUT";
@@ -31,14 +31,20 @@
                     echo "Login";
                 }
                 ?>
-            </button></a>
+        </button></a>
 
 
     </header>
     <div class="game_space">
         <div class="game_part">
-            <button onclick="this.style.visibility='hidden'; startGame()" id="game" class="play">PLAY</Button>
-
+            <?php
+            if (isset($_SESSION['username'])) {
+            echo "<button onclick=\"this.style.visibility='hidden'; startGame()\" id='game' class='play'>PLAY</Button>";
+            }
+            else {
+            echo "<button id='game' class='play'>LOGIN TO PLAY!</Button>";
+            }
+                ?>
             <div>
                 <div id=dealerSide1 class="dCards"> </div>
                 <div id=dealerSide2 class="dCards"> </div>
@@ -103,7 +109,8 @@
                 </li>
                 <li>
                     <p>Players win when their hand totals higher than dealer's hand, or they have 21 or less when
-                        <br> the dealer busts &nbsp; (i.e., exceeds 21).</p>
+                        <br> the dealer busts &nbsp; (i.e., exceeds 21).
+                    </p>
                 </li>
             </ol>
         </span>
@@ -136,8 +143,8 @@
 
 
         echo "            <button input type='submit' value=Login name='Login' class='loginbtn'> Login </button>";
-        echo "            <u><a class='regi-position' onclick='document.getElementById('id02').style.display='block'';
-                        onclick='document.getElementById('id01').style.display='none''>Don't have an account? Sign up
+        echo "            <u><a class='regi-position' onclick=\"document.getElementById('id02').style.display='block'\";
+                        onclick=\"document.getElementById('id01').style.display='none'\">Don't have an account? Sign up
                         here!</a></u>";
         echo "        </div>";
 
@@ -151,7 +158,8 @@
             <div class="close-sign">
                 <span onclick="document.getElementById('id02').style.display='none'" title="Close Modal" class="close">
                     &times;
-                </span> </div>
+                </span>
+            </div>
             <img src="WebPhotos\blackjack7.jpg" alt="logo" class="profile">
 
 
@@ -177,7 +185,8 @@
             <div class="close-sign">
                 <span onclick="document.getElementById('id03').style.display='none'" title="Close Modal" class="close">
                     &times;
-                </span> </div>
+                </span>
+            </div>
 
 
             <h1 style="font-size: 60px ;"> Card Rules</h1>
@@ -202,7 +211,8 @@
             <div class="close-sign">
                 <span onclick="document.getElementById('id04').style.display='none'" title="Close Modal" class="close">
                     &times;
-                </span> </div>
+                </span>
+            </div>
 
 
             <h1 style="font-size: 60px ;"> Hitting Rules</h1>
@@ -223,7 +233,8 @@
             <div class="close-sign">
                 <span onclick="document.getElementById('id05').style.display='none'" title="Close Modal" class="close">
                     &times;
-                </span> </div>
+                </span>
+            </div>
 
 
             <h1 style="font-size: 60px ;"> Standing Rules</h1>
@@ -245,7 +256,8 @@
             <div class="close-sign">
                 <span onclick="document.getElementById('id06').style.display='none'" title="Close Modal" class="close">
                     &times;
-                </span> </div>
+                </span>
+            </div>
 
 
             <h1 style="font-size: 60px ;"> Surrender</h1>
@@ -271,43 +283,43 @@
         <p></p>
     </footer>
     <script>
-        var modal1 = document.getElementById('id01');
-        var modal2 = document.getElementById('id02');
-        var modal3 = document.getElementById('id03');
-        var modal4 = document.getElementById('id04');
-        var modal5 = document.getElementById('id05');
-        var modal6 = document.getElementById('id06');
+    var modal1 = document.getElementById('id01');
+    var modal2 = document.getElementById('id02');
+    var modal3 = document.getElementById('id03');
+    var modal4 = document.getElementById('id04');
+    var modal5 = document.getElementById('id05');
+    var modal6 = document.getElementById('id06');
 
-        // When the user clicks anywhere outside of the modal, close it
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+        }
         window.onclick = function(event) {
-            if (event.target == modal1) {
-                modal1.style.display = "none";
+            if (event.target == modal2) {
+                modal2.style.display = "none";
             }
             window.onclick = function(event) {
-                if (event.target == modal2) {
-                    modal2.style.display = "none";
+                if (event.target == modal3) {
+                    modal3.style.display = "none";
                 }
                 window.onclick = function(event) {
-                    if (event.target == modal3) {
-                        modal3.style.display = "none";
+                    if (event.target == modal4) {
+                        modal4.style.display = "none";
                     }
                     window.onclick = function(event) {
-                        if (event.target == modal4) {
-                            modal4.style.display = "none";
+                        if (event.target == modal5) {
+                            modal5.style.display = "none";
                         }
                         window.onclick = function(event) {
-                            if (event.target == modal5) {
-                                modal5.style.display = "none";
-                            }
-                            window.onclick = function(event) {
-                                if (event.target == modal6) {
-                                    modal6.style.display = "none";
-                                }
+                            if (event.target == modal6) {
+                                modal6.style.display = "none";
                             }
                         }
                     }
                 }
             }
         }
+    }
     </script>
 </body>
