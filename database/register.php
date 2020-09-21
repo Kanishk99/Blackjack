@@ -69,7 +69,7 @@ elseif ($nuser > 0)
      
     echo "<script> 
             alert('REGISTERED')
-            location.href='../index.php' 
+            location.href='../index.php';
             </script>"; 
 
     // echo "registerd";

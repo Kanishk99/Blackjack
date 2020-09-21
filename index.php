@@ -168,11 +168,11 @@
                 <label for="address">E-Mail</label><br>
                 <input type="text" name="address" required><br><br>
                 <label for="password"> Password</label><br>
-                <input type="password" name="userpasword" id="pass" required><br><br>
+                <input type="password" name="userpassword" id="pass" required><br><br>
                 <!--<label for="password"> Password</label><br>
                 <input type="password" placeholder="Enter your password" name="password" required><br><br>  -->
             </div>
-            <button type="submit" class="loginbtn"> Login </button>
+            <button type="submit" class="loginbtn"> REGISTER </button>
 
         </form>
     </div>
