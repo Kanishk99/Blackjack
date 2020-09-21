@@ -4,7 +4,7 @@
 <head>
     <title>index</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
     <script src="deck.js"></script>
 </head>
 
@@ -28,7 +28,7 @@
                     echo "LOGOUT";
                 } else {
                     echo "<a class='cta'><button class='login' onclick=\"document.getElementById('id01').style.display='block'\" style='width:auto' id='login'>";
-                    echo "Login";
+                    echo "Login"; 
                 }
                 ?>
         </button></a>
@@ -170,7 +170,7 @@
                 <label for="address">E-Mail</label><br>
                 <input type="text" name="address" required><br><br>
                 <label for="password"> Password</label><br>
-                <input type="password" name="userpassword" id="pass" required><br><br>
+                <input type="password" name="userpasword" id="pass" required><br><br>
                 <!--<label for="password"> Password</label><br>
                 <input type="password" placeholder="Enter your password" name="password" required><br><br>  -->
             </div>
