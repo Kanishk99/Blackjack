@@ -14,12 +14,12 @@
      //$_SESSION = []; //Form reset debug
     ?>
 
-    <header>
+    <header class="nav_bar">
         <nav class="navbar">
             <ul class="nav_links">
                 <li class="home"><a href="#">HOME</a></li>
-                <li class="tutorial"><a href="#">RULES</a></li>
-                <li class="about"><a href="#">ABOUT US</a></li>
+                <li class="tutorial"><a href="#section_rules">RULES</a></li>
+                <li class="about"><a href="#section_about">ABOUT US</a></li>
             </ul>
         </nav>
         <?php
@@ -32,7 +32,7 @@
                 }
                 ?>
         </button></a>
-
+                
 
     </header>
     <div class="game_space">
@@ -85,7 +85,7 @@
                 </a> <br>
             </ul>
         </span>
-        <span class="rules">
+        <span class="rules" id="section_rules">
             <h2>THE BASIC RULES WHEN PLAYING BLACKJACK:</h2>
             <p> </p>
             <ol>
@@ -143,9 +143,7 @@
 
 
         echo "            <button input type='submit' value=Login name='Login' class='loginbtn'> Login </button>";
-        echo "            <u><a class='regi-position' onclick=\"document.getElementById('id02').style.display='block'\";
-                        onclick=\"document.getElementById('id01').style.display='none'\">Don't have an account? Sign up
-                        here!</a></u>";
+        echo "            <p class='regi-position' onclick=\"document.getElementById('id02').style.display='block'\";>Don't have an account? Sign up here!<p>";
         echo "        </div>";
 
         echo "     </form>";
@@ -274,12 +272,12 @@
 
 
     </div>
-    <footer>
+    <footer id="section_about" class="foot">
         <p>Contact information:</p>
-        <a href="mailto:kanishkkargutkar123@gmail.com">someone@example.com</a> |
-        <a href="mailto:marathegaurav364@gmail.com">someone@example.com</a> |
-        <a href="mailto:kawaleaditya870@gmail.com">someone@example.com</a> |
-        <a href="mailto:mishradhruv072@gmail.com">someone@example.com</a>
+        <a href="mailto:kanishkkargutkar123@gmail.com">kanishkkargutkar123@gmail.com</a> <br>
+        <a href="mailto:marathegaurav364@gmail.com">marathegaurav364@gmail.com</a> <br>
+        <a href="mailto:kawaleaditya870@gmail.com">kawaleaditya870@gmail.com</a> <br>
+        <a href="mailto:mishradhruv072@gmail.com">mishradhruv072@gmail.com</a> <br>
         <p></p>
     </footer>
     <script>
