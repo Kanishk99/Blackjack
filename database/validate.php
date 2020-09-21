@@ -43,6 +43,7 @@ else
 {
     echo "<script> 
     alert('LOGIN Failed Please check ID or Password');
+    location.href='../index.php';
     </script>";
 }
 
