@@ -55,7 +55,6 @@ elseif ($nuser > 0)
             location.href='../index.php'; 
             </script>";
     //   //header('location:login.html');
-
  }
 
  else
@@ -70,15 +69,11 @@ elseif ($nuser > 0)
     echo "<script> 
             alert('REGISTERED')
             location.href='../index.php';
-            </script>"; 
+            </script>";
 
     // echo "registerd";
             
             //header('location:login.html');
     
 }
-
-
-
-
 ?>

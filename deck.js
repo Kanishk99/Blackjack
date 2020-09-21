@@ -5,6 +5,7 @@ playerTotal = 0;
 dealerTotal = 0;
 divDealerIncrement = 1;
 divPlayerIncrement = 1;
+document.cookie = "user_victory=false";
 
 
 function shuffle(array) {
@@ -62,6 +63,8 @@ function disableButtons(str) {
     document.getElementById("retry").style.visibility = "hidden";
   }
 }
+
+
 
 function checkBustPlayer() {
   if (playerTotal > 21) {
@@ -142,10 +145,13 @@ function checkVictory() {
   if (playerTotal > 21) {
     document.getElementById("victory").innerHTML += "Dealer wins!";
   } else if (dealerTotal > 21) {
+    document.cookie = "user_victory=true";
     document.getElementById("victory").innerHTML += "Player wins!";
   } else if (playerTotal > dealerTotal && (!checkBustPlayer())) {
+    document.cookie = "user_victory=true";
     document.getElementById("victory").innerHTML += "Player wins!";
   } else if (dealerTotal > playerTotal && (!checkBustDealer())) {
+    document.cookie = "user_victory=false";
     document.getElementById("victory").innerHTML += "Dealer wins!";
   } else if (playerTotal == dealerTotal) {
     document.getElementById("victory").innerHTML += "PUSH!";
