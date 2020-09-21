@@ -17,7 +17,7 @@
     <header class="nav_bar">
         <nav class="navbar">
             <ul class="nav_links">
-                <li class="home"><a href="#">HOME</a></li>
+                <li class="home"><a href="#game_section">GAME</a></li>
                 <li class="tutorial"><a href="#section_rules">RULES</a></li>
                 <li class="about"><a href="#section_about">ABOUT US</a></li>
             </ul>
@@ -35,7 +35,7 @@
                 
 
     </header>
-    <div class="game_space">
+    <div class="game_space" id="game_section">
         <div class="game_part">
             <?php
             if (isset($_SESSION['username'])) {
@@ -56,7 +56,7 @@
 
             <button onclick="playerTurn()" id="hit" value="HIT" class="action">HIT</button>
             <button onclick="playerStand()" id="stand" value="STAND" class="action">STAND</button>
-            <button onclick="startGame()" id="retry" value="RETRY" class="retry">RETRY</button>
+            <button onclick="location.reload();" id="retry" value="RETRY" class="retry">RETRY</button>
 
             <div>
                 <div id=playerSide1 class="pCards"> </div>
