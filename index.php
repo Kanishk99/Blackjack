@@ -9,42 +9,93 @@
 </head>
 
 <body>
+    <script>
+        document.cookie = "new_money=0";
+    </script>
     <?php
-     session_start(); 
-     //$_SESSION = []; //Form reset debug
+    session_start();
+    $connect = mysqli_connect("localhost", "root", "", "blackjackUD"); # connection to db
+    //$_SESSION = []; //Form reset debug
     ?>
 
-    <header>
+    <header class="nav_bar">
         <nav class="navbar">
             <ul class="nav_links">
-                <li class="home"><a href="#">HOME</a></li>
-                <li class="tutorial"><a href="#">RULES</a></li>
-                <li class="about"><a href="#">ABOUT US</a></li>
+                <li class="home"><a href="#game_section">GAME</a></li>
+                <li class="tutorial"><a href="#section_rules">RULES</a></li>
+                <li class="about"><a href="#section_about">ABOUT US</a></li>
             </ul>
         </nav>
         <?php
-                if (isset($_SESSION['username'])) {
-                    echo "<a class='cta' href='database\\logout.php'><button class='login' style='width:auto'>";
-                    echo "LOGOUT";
-                } else {
-                    echo "<a class='cta'><button class='login' onclick=\"document.getElementById('id01').style.display='block'\" style='width:auto' id='login'>";
-                    echo "Login"; 
-                }
-                ?>
+        if (isset($_SESSION['username'])) {
+            echo "<a class='cta' href='database\\logout.php'><button class='login' style='width:auto'>";
+            echo "LOGOUT";
+        } else {
+            echo "<a class='cta'><button class='login' onclick=\"document.getElementById('id01').style.display='block'\" style='width:auto' id='login'>";
+            echo "Login";
+        }
+        ?>
         </button></a>
 
 
     </header>
-    <div class="game_space">
+    <div class="game_space" id="game_section">
         <div class="game_part">
             <?php
             if (isset($_SESSION['username'])) {
-            echo "<button onclick=\"this.style.visibility='hidden'; startGame()\" id='game' class='play'>PLAY</Button>";
+                echo "<button onclick=\"this.style.visibility='hidden'; startGame()\" id='game' class='play'>PLAY</Button>";
+                echo "            <div>\n";
+                echo "                <label class='bets_label' id='bets_label'></label>\n";
+                echo "            </div>\n";
+                echo "            <div class=\"bets_area\">\n";
+                echo "                <button onclick=addMoney(100) class='bets'>+100</button>\n";
+                echo "                <button onclick=addMoney(500) class='bets'>+500</button>\n";
+                echo "                <button onclick=addMoney(1000) class='bets'>+1000</button>\n";
+                echo "            </div>\n";
+                echo "            <!--<div class=\"bets_area_remove\">\n";
+                echo "                <button onclick=addMoney(-100) class='bets'>-100</button>\n";
+                echo "                <button onclick=addMoney(-500) class='bets'>-500</button>\n";
+                echo "                <button onclick=addMoney(-1000) class='bets'>-1000</button>\n";
+                echo "            </div>-->\n";
+                echo "            <!--Money isn't additive, fix later-->\n";
+                echo "            <script>\n";
+                echo "                function addMoney(money) {\n";
+                echo "                    current_money = document.getElementById('bets_label').innerHTML;\n";
+                echo "                    document.getElementById('bets_label').innerHTML = '0';\n";
+                echo "                    document.getElementById('bets_label').innerHTML = 'You bet ' + money;\n";
+                echo "                    document.cookie = \"new_money=\" + money + \";\";\n";
+                echo "                    alert(document.cookie);\n";
+                echo "                }\n";
+                echo "            </script>";
+            } else {
+                echo "<button id='game' class='play'>LOGIN TO PLAY!</Button>";
             }
-            else {
-            echo "<button id='game' class='play'>LOGIN TO PLAY!</Button>";
+            ?>
+
+            <?php
+            if (isset($_SESSION['username'])) {
+                $new_money = 0;
+                $new_money = $_COOKIE['new_money'];
+                $name = $_SESSION['username'];
+                $check_money = "SELECT money from user_details WHERE user_name = '$name'";
+                $add_money = "UPDATE user_details SET money = money  + '$new_money' + '$new_money' WHERE user_name = '$name'";
+                $remove_money = "UPDATE user_details SET money = money - '$new_money' WHERE user_name = '$name'";
+                $current_money = mysqli_query($connect, $check_money);
+                $result = mysqli_query($connect, $check_money);
+                $row = mysqli_fetch_row($result);
+                if ($row[0] > $new_money) {
+                    mysqli_query($connect, $remove_money);
+                    setcookie('new_money', '0', time() + 60, '/');
+                } else {
+                    echo "<script> alert('You don't have enough money for that bet!'); </script>";
+                }
+                $user_victory = $_COOKIE['user_victory'];
+                if ($user_victory == "true") {
+                    mysqli_query($connect, $add_money);
+                    setcookie('new_money', '0', time() + 60, '/');
+                }
             }
-                ?>
+            ?>
             <div>
                 <div id=dealerSide1 class="dCards"> </div>
                 <div id=dealerSide2 class="dCards"> </div>
@@ -56,7 +107,7 @@
 
             <button onclick="playerTurn()" id="hit" value="HIT" class="action">HIT</button>
             <button onclick="playerStand()" id="stand" value="STAND" class="action">STAND</button>
-            <button onclick="startGame()" id="retry" value="RETRY" class="retry">RETRY</button>
+            <button onclick="location.reload();" id="retry" value="RETRY" class="action">PLAY AGAIN</button>
 
             <div>
                 <div id=playerSide1 class="pCards"> </div>
@@ -71,26 +122,26 @@
     <div class="rule_nav">
         <span class="rulesnav ,position2, rborder">
             <ul>
-                <a onclick="document.getElementById('id03').style.display='block'" style="width:auto" class="myhover">
-                    <li><u>Cards Rules</u></li>
+                <a onclick="document.getElementById('id03').style.display='block'" style="width:auto" class="rkeys">
+                    <li>Cards </li>
                 </a> <br>
-                <a onclick="document.getElementById('id04').style.display='block'" style="width:auto" class="myhover">
-                    <li><u>Hitting Rules</u></li>
+                <a onclick="document.getElementById('id04').style.display='block'" style="width:auto" class="rkeys">
+                    <li>Hitting </li>
                 </a> <br>
-                <a onclick="document.getElementById('id05').style.display='block'" style="width:auto" class="myhover">
-                    <li><u>standing Rules</u></li>
+                <a onclick="document.getElementById('id05').style.display='block'" style="width:auto" class="rkeys">
+                    <li>standing </li>
                 </a> <br>
-                <a onclick="document.getElementById('id06').style.display='block'" style="width:auto" class="myhover">
-                    <li><u>surrender</u></li>
+                <a onclick="document.getElementById('id06').style.display='block'" style="width:auto" class="rkeys">
+                    <li>surrender</li>
                 </a> <br>
             </ul>
         </span>
-        <span class="rules">
-            <h2>THE BASIC RULES WHEN PLAYING BLACKJACK:</h2>
-            <p> </p>
+        <span class="rules" id="section_rules">
+            <h3>THE BASIC RULES WHEN PLAYING BLACKJACK:</h3>
+            <p> </p>
             <ol>
                 <li>
-                    <p>Blackjack starts with players making bets.</p>
+                    <p>Blackjack starts with players making bets.</p>
                 </li>
                 <li>
                     <p>Dealer deals 2 cards to the players and two to himself (1 card face up, the other face down).
@@ -143,9 +194,7 @@
 
 
         echo "            <button input type='submit' value=Login name='Login' class='loginbtn'> Login </button>";
-        echo "            <u><a class='regi-position' onclick=\"document.getElementById('id02').style.display='block'\";
-                        onclick=\"document.getElementById('id01').style.display='none'\">Don't have an account? Sign up
-                        here!</a></u>";
+        echo "            <p class='regi-position' onclick=\"document.getElementById('id02').style.display='block'\";>Don't have an account? Sign up here!<p>";
         echo "        </div>";
 
         echo "     </form>";
@@ -170,7 +219,7 @@
                 <label for="address">E-Mail</label><br>
                 <input type="text" name="address" required><br><br>
                 <label for="password"> Password</label><br>
-                <input type="password" name="userpasword" id="pass" required><br><br>
+                <input type="password" name="userpassword" id="pass" required><br><br>
                 <!--<label for="password"> Password</label><br>
                 <input type="password" placeholder="Enter your password" name="password" required><br><br>  -->
             </div>
@@ -274,52 +323,64 @@
 
 
     </div>
-    <footer>
-        <p>Contact information:</p>
-        <a href="mailto:kanishkkargutkar123@gmail.com">someone@example.com</a> |
-        <a href="mailto:marathegaurav364@gmail.com">someone@example.com</a> |
-        <a href="mailto:kawaleaditya870@gmail.com">someone@example.com</a> |
-        <a href="mailto:mishradhruv072@gmail.com">someone@example.com</a>
-        <p></p>
+    <footer id="section_about" class="foot">
+        <!--<p style="color: white; font-size: 36px">&nbsp; Contact information:</p>
+        &nbsp;&nbsp;&nbsp; <a href="mailto:kanishkkargutkar123@gmail.com" class="footer-a">&nbsp; kanishkkargutkar123@gmail.com</a> 
+        &nbsp; <a href="mailto:marathegaurav364@gmail.com" class="footer-a">marathegaurav364@gmail.com</a>
+        &nbsp; <a href="mailto:kawaleaditya870@gmail.com" class="footer-a">kawaleaditya870@gmail.com</a> 
+        &nbsp; <a href="mailto:mishradhruv072@gmail.com" class="footer-a">mishradhruv072@gmail.com</a> 
+        <p></p> -->
+        <br>
+        <p class="share">Share </p>
+        <div>
+            <span class="share_icon">
+
+                <a padding-left: 7px; href="https://www.facebook.com/"><img src="Webphotos\fbwhite.png" alt="facebook"></a> &nbsp
+                <a padding-left: 7px; href="https://www.instagram.com/"><img src="Webphotos\insta.png" alt="insta"></a> &nbsp
+                <a padding-left: 7px; href="https://twitter.com/?lang=en"><img src="Webphotos\twitter.png" alt="tweet"></a> &nbsp
+                <a padding-left: 7px; href="https://www.whatsapp.com/\"><img src="Webphotos\whatsApp.png" alt="Whatsapp"></a> &nbsp
+            </span>
+
+
     </footer>
     <script>
-    var modal1 = document.getElementById('id01');
-    var modal2 = document.getElementById('id02');
-    var modal3 = document.getElementById('id03');
-    var modal4 = document.getElementById('id04');
-    var modal5 = document.getElementById('id05');
-    var modal6 = document.getElementById('id06');
+        var modal1 = document.getElementById('id01');
+        var modal2 = document.getElementById('id02');
+        var modal3 = document.getElementById('id03');
+        var modal4 = document.getElementById('id04');
+        var modal5 = document.getElementById('id05');
+        var modal6 = document.getElementById('id06');
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal1) {
-            modal1.style.display = "none";
-        }
+        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-            if (event.target == modal2) {
-                modal2.style.display = "none";
+            if (event.target == modal1) {
+                modal1.style.display = "none";
             }
             window.onclick = function(event) {
-                if (event.target == modal3) {
-                    modal3.style.display = "none";
+                if (event.target == modal2) {
+                    modal2.style.display = "none";
                 }
                 window.onclick = function(event) {
-                    if (event.target == modal4) {
-                        modal4.style.display = "none";
+                    if (event.target == modal3) {
+                        modal3.style.display = "none";
                     }
                     window.onclick = function(event) {
-                        if (event.target == modal5) {
-                            modal5.style.display = "none";
+                        if (event.target == modal4) {
+                            modal4.style.display = "none";
                         }
                         window.onclick = function(event) {
-                            if (event.target == modal6) {
-                                modal6.style.display = "none";
+                            if (event.target == modal5) {
+                                modal5.style.display = "none";
+                            }
+                            window.onclick = function(event) {
+                                if (event.target == modal6) {
+                                    modal6.style.display = "none";
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
     </script>
 </body>
