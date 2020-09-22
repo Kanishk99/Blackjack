@@ -81,8 +81,9 @@
                 $add_money = "UPDATE user_details SET money = money  + '$new_money' + '$new_money' WHERE user_name = '$name'";
                 $remove_money = "UPDATE user_details SET money = money - '$new_money' WHERE user_name = '$name'";
                 $current_money = mysqli_query($connect, $check_money);
-                echo $current_money;
-                if ($check_money < $new_money) {
+                $result = mysqli_query($connect, $check_money);
+                $row = mysqli_fetch_row($result);
+                if ($row[0] > $new_money) {
                     mysqli_query($connect, $remove_money);
                     setcookie('new_money', '0', time() + 60, '/');
                 } else {
