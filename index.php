@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <script>
+        document.cookie = "new_money=0";
+    </script>
     <?php
     session_start();
     $connect = mysqli_connect("localhost", "root", "", "blackjackUD"); # connection to db
@@ -43,7 +46,7 @@
                 echo "<button onclick=\"this.style.visibility='hidden'; startGame()\" id='game' class='play'>PLAY</Button>";
                 echo "            <div>\n";
                 echo "                <label class='bets_label' id='bets_label'></label>\n";
-                echo "            </div>\n";    
+                echo "            </div>\n";
                 echo "            <div class=\"bets_area\">\n";
                 echo "                <button onclick=addMoney(100) class='bets'>+100</button>\n";
                 echo "                <button onclick=addMoney(500) class='bets'>+500</button>\n";
@@ -71,25 +74,25 @@
 
             <?php
             if (isset($_SESSION['username'])) {
+                $new_money = 0;
                 $new_money = $_COOKIE['new_money'];
                 $name = $_SESSION['username'];
                 $check_money = "SELECT money from user_details WHERE user_name = '$name'";
                 $add_money = "UPDATE user_details SET money = money  + '$new_money' + '$new_money' WHERE user_name = '$name'";
                 $remove_money = "UPDATE user_details SET money = money - '$new_money' WHERE user_name = '$name'";
-                if($check_money > $new_money)
-                {
+                $current_money = mysqli_query($connect, $check_money);
+                echo $current_money;
+                if ($check_money < $new_money) {
                     mysqli_query($connect, $remove_money);
-                }
-                else 
-                {
+                    setcookie('new_money', '0', time() + 60, '/');
+                } else {
                     echo "<script> alert('You don't have enough money for that bet!'); </script>";
                 }
                 $user_victory = $_COOKIE['user_victory'];
-                if($user_victory=="true")
-                {
+                if ($user_victory == "true") {
                     mysqli_query($connect, $add_money);
+                    setcookie('new_money', '0', time() + 60, '/');
                 }
-                setcookie('new_money', '0', time() + 60, '/');
             }
             ?>
             <div>
@@ -103,7 +106,7 @@
 
             <button onclick="playerTurn()" id="hit" value="HIT" class="action">HIT</button>
             <button onclick="playerStand()" id="stand" value="STAND" class="action">STAND</button>
-            <button onclick="location.reload();" id="retry" value="RETRY" class="action">RETRY</button>
+            <button onclick="location.reload();" id="retry" value="RETRY" class="action">PLAY AGAIN</button>
 
             <div>
                 <div id=playerSide1 class="pCards"> </div>
@@ -215,7 +218,7 @@
                 <label for="address">E-Mail</label><br>
                 <input type="text" name="address" required><br><br>
                 <label for="password"> Password</label><br>
-                <input type="password" name="userpasword" id="pass" required><br><br>
+                <input type="password" name="userpassword" id="pass" required><br><br>
                 <!--<label for="password"> Password</label><br>
                 <input type="password" placeholder="Enter your password" name="password" required><br><br>  -->
             </div>
