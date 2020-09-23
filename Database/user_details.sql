@@ -34,14 +34,14 @@ CREATE TABLE `user_details` (
   `user_address` varchar(100) NOT NULL,
   `user_password` varchar(255) NOT NULL,
   `Date` date NOT NULL DEFAULT current_timestamp(),
-  `Money/Score` int(11) NOT NULL
+  `money` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_details`
 --
 
-INSERT INTO `user_details` (`user_id`, `user_name`, `user_address`, `user_password`, `Date`, `Money/Score`) VALUES
+INSERT INTO `user_details` (`user_id`, `user_name`, `user_address`, `user_password`, `Date`, `money`) VALUES
 (1, 'sejal', 'sejal@gmail.com', '$2y$10$jRfW1yUweHFvbwUK6axW7OMznHghbsgdwWK8ZXat7fDEUyQ4ECF8u', '2020-03-19', 0),
 (2, 'gaurav', 'gaurav@gmail.com', '$2y$10$xNBZjwSX4kFB/pchNXMgA.StrmTo.qvLE.ABT.QYOnldlaYV8mDR.', '2020-03-19', 0),
 (3, 'ankit', 'ankit@gmail.com', '$2y$10$vWOBas8P4GRbMR04djhUE.LpduKjoe9zH2rFK/wL7lQ31xqg9d/XO', '2020-03-19', 0),
