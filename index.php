@@ -1,17 +1,18 @@
 <html>
 
 <head>
-    <title>index</title>
+    <title>Blackjack</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Scale window according to device-->
     <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
     <script src='deck.js' type='text/javascript'></script>
 </head>
 
 <body>
-    <script src='deck.js' type='text/javascript'></script>
     <script>
         document.cookie = "new_money=0";
     </script>
+
     <?php
     session_start();
     $connect = mysqli_connect("localhost", "root", "", "blackjackUD"); # connection to db
@@ -24,7 +25,7 @@
             <ul class="nav_links">
                 <li class="home"><a href="#game_section">GAME</a></li>
                 <li class="tutorial"><a href="#section_rules">RULES</a></li>
-                <li class="about"><a href="#section_about">ABOUT US</a></li>
+                <li class="about"><a href="#section_about">SHARE</a></li>
             </ul>
         </nav>
         <?php
@@ -38,7 +39,6 @@
         ?>
         </button></a>
 
-
     </header>
     <div class="game_space" id="game_section">
         <div class="game_part">
@@ -49,9 +49,9 @@
                 echo "                <label class='bets_label' id='bets_label'></label>\n";
                 echo "            </div>\n";
                 echo "            <div class=\"bets_area\">\n";
-                echo "                <button onclick=addMoney(100) class='bets'>+100</button>\n";
-                echo "                <button onclick=addMoney(500) class='bets'>+500</button>\n";
-                echo "                <button onclick=addMoney(1000) class='bets'>+1000</button>\n";
+                echo "                <button onclick=addMoney(100) class='bets'>100</button>\n";
+                echo "                <button onclick=addMoney(500) class='bets'>500</button>\n";
+                echo "                <button onclick=addMoney(1000) class='bets'>1000</button>\n";
                 echo "            </div>\n";
                 echo "            <!--<div class=\"bets_area_remove\">\n";
                 echo "                <button onclick=addMoney(-100) class='bets'>-100</button>\n";
@@ -72,7 +72,7 @@
                 echo "<button id='game' class='play'>LOGIN TO PLAY!</Button>";
             }
             ?>
-            <label id='victory_label'></label>
+            <label id='victory_label' class='victory_label'></label>
 
             <?php
             if (isset($_SESSION['username'])) {
@@ -89,7 +89,7 @@
                     mysqli_query($connect, $remove_money);
                     setcookie('new_money', '0', time() + 60, '/');
                 } else {
-                    echo "<script> alert('You don't have enough money for that bet!'); </script>";
+                    //echo "<script> alert('You don't have enough money for that bet!'); </script>";
                 }
                 $user_victory = $_COOKIE['user_victory'];
                 if ($user_victory == "true") {
@@ -119,6 +119,10 @@
                 <div id=playerSide5 class="pCards"> </div>
                 <div id=playerSide6 class="pCards"> </div>
             </div>
+
+            <div class='total' id='total'>
+            </div>
+
         </div>
     </div>
     <div class="rule_nav">
@@ -146,7 +150,7 @@
                     <p>Blackjack starts with players making bets.</p>
                 </li>
                 <li>
-                    <p>Dealer deals 2 cards to the players and two to himself (1 card face up, the other face down).
+                    <p>Dealer deals 2 cards to the players and two to himself.
                     </p>
                 </li>
                 <li>
@@ -155,24 +159,19 @@
                         total of any hand <br>is the sum of the card values in the hand</p>
                 </li>
                 <li>
-                    <p>Players must decide whether to stand, hit, surrender, double down, or split.</p>
+                    <p>Players must decide whether to stand or hit.</p>
                 </li>
                 <li>
                     <p>The dealer acts last and must hit on 16 or less and stand on 17 through 21.</p>
                 </li>
                 <li>
-                    <p>Players win when their hand totals higher than dealer's hand, or they have 21 or less when
-                        <br> the dealer busts &nbsp; (i.e., exceeds 21).
+                    <p>Players win when their hand total's higher than dealer's hand, or they have 21 or less when
+                        <br> the dealer busts &nbsp; (i.e., exceeds 21). <br>
                     </p>
                 </li>
             </ol>
         </span>
-
-
-
-
         </section>
-
     </div>
 
     <?php
@@ -186,12 +185,12 @@
         echo "            <span onclick=\"document.getElementById('id01').style.display='none'\" title='Close Modal' class='close'>
                     &times";
         echo "            </span> </div>";
-        echo "      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+        echo "      <br><br><br><br><br><br><br><br>";
         echo "           <label for='uname'> Username</label><br>";
         echo "            <input input type='text' name='nm' required='required' placeholder='Enter Username'><br><br>";
         echo "            <label for='password'> Password</label><br>";
         echo "           <input input type='password' name='userpassword' id='pass' required
-                    placeholder='Enter your password'><br><br>";
+                    placeholder='Enter your password'><br>";
 
 
         echo "            <button input type='submit' value=Login name='Login' class='loginbtn'> Login </button>";
@@ -202,34 +201,26 @@
         echo "</div>";
     } ?>
     <div id="id02" class="modal">
-
         <form class="model-content" action="database\register.php" method="POST">
-
             <div class="close-sign">
                 <span onclick="document.getElementById('id02').style.display='none'" title="Close Modal" class="logclose">
                     &times;
                 </span>
             </div>
-
-
-
-
             <div>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
                 <label for="nm"> Username</label><br>
-                <input type="text" name="nm" required><br><br>
+                <input type="text" name="nm" required><br>
                 <label for="address">E-Mail</label><br>
-                <input type="text" name="address" required><br><br>
+                <input type="text" name="address" required><br>
                 <label for="password"> Password</label><br>
-                <input type="password" name="userpassword" id="pass" required><br><br>
+                <input type="password" name="userpassword" id="pass" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title='Your password must contain at least one uppercase or lowercase letter, 1 number and a minimum of 6 characters'><br>
                 <!--<label for="password"> Password</label><br>
                 <input type="password" placeholder="Enter your password" name="password" required><br><br>  -->
             </div>
             <button type="submit" class="loginbtn"> Register </button>
-
         </form>
     </div>
-
 
     <div id="id03" class="cards-rules">
         <div class="cards-rules-content">
@@ -237,24 +228,19 @@
                 <span onclick="document.getElementById('id03').style.display='none'" title="Close Modal" class="close">
                     &times;
                 </span>
+                <h1 class="cardhead"> Card Rules</h1>
+                <img src="WebPhotos\card-value.png" alt="card_value" class="rules_img">
+                <span class="content">
+                    All cards count their face value in blackjack. Picture cards count as 10 and the ace can count as either
+                    1 or 11.
+                    Card suits have no meaning in blackjack. The total of any hand is the sum of the card values in the
+                    hand. A hand
+                    containing a 4-5-8 totals 17. Another containing a queen-5 totals 15. It is always assumed that the ace
+                    counts as
+                    11 unless so doing would make your hand total exceed 21, in which case the ace reverts to a value of 1.
+                </span>
             </div>
-
-
-            <h1 class="cardhead"> Card Rules</h1>
-            <img src="WebPhotos\card-value.png" alt="card_value" class="rules_img">
-            <span class="content">
-                All cards count their face value in blackjack. Picture cards count as 10 and the ace can count as either
-                1 or 11.
-                Card suits have no meaning in blackjack. The total of any hand is the sum of the card values in the
-                hand. A hand
-                containing a 4-5-8 totals 17. Another containing a queen-5 totals 15. It is always assumed that the ace
-                counts as
-                11 unless so doing would make your hand total exceed 21, in which case the ace reverts to a value of 1.
-            </span>
         </div>
-
-
-
     </div>
 
     <div id="id04" class="cards-rules">
@@ -263,20 +249,15 @@
                 <span onclick="document.getElementById('id04').style.display='none'" title="Close Modal" class="close">
                     &times;
                 </span>
+                <h1 class="cardhead"> Hitting Rules</h1>
+                <img src="WebPhotos\Hit.png" alt="card_value" class="rules_img">
+                <span class="content">
+                    This means you want the dealer to give another card to your hand. In shoe games, indicate to the dealer
+                    that you want a hit by making a beckoning motion with your finger or tapping the table behind your cards
+                    with your finger. In hand-held games, scratch the edges of the cards in your hand lightly on the felt
+                </span>
             </div>
-
-
-            <h1 class="cardhead"> Hitting Rules</h1>
-            <img src="WebPhotos\Hit.png" alt="card_value" class="rules_img">
-            <p class="content">
-                This means you want the dealer to give another card to your hand. In shoe games, indicate to the dealer
-                that you want a hit by making a beckoning motion with your finger or tapping the table behind your cards
-                with your finger. In hand-held games, scratch the edges of the cards in your hand lightly on the felt
-            </p>
         </div>
-
-
-
     </div>
 
     <div id="id05" class="cards-rules">
@@ -285,21 +266,16 @@
                 <span onclick="document.getElementById('id05').style.display='none'" title="Close Modal" class="close">
                     &times;
                 </span>
+                <h1 class="cardhead"> Standing Rules</h1>
+                <img src="WebPhotos\Stand.png" alt="card_value" class="rules_img">
+                <span class="content">
+                    This means you are satisfied with the total of the hand and want to stand with the cards you have. In
+                    shoe games, indicate that you want to stand by waving your hand over the cards, palm down. In hand-held
+                    games, tuck your cards under the chips that you have in the betting box.
+
+                </span>
             </div>
-
-
-            <h1 class="cardhead"> Standing Rules</h1>
-            <img src="WebPhotos\Stand.png" alt="card_value" class="rules_img">
-            <p class="content">
-                This means you are satisfied with the total of the hand and want to stand with the cards you have. In
-                shoe games, indicate that you want to stand by waving your hand over the cards, palm down. In hand-held
-                games, tuck your cards under the chips that you have in the betting box.
-
-            </p>
         </div>
-
-
-
     </div>
 
     <div id="id06" class="cards-rules">
@@ -308,22 +284,17 @@
                 <span onclick="document.getElementById('id06').style.display='none'" title="Close Modal" class="close">
                     &times;
                 </span>
+                <h1 class="cardhead"> Surrender</h1>
+                <img src="WebPhotos\Surrender.png" alt="card_value" class="rules_img">
+                <span class="content">
+                    This playing option is sometimes permitted. It allows a player to forfeit the hand immediately with an
+                    automatic loss of half the original bet. In most venues, players can surrender their initial two-card
+                    hand only after the dealer has checked his cards and ascertained that he doesn’t have a blackjack (known
+                    as late surrender). Once a player draws a card, the surrender option is no longer available. If the
+                    dealer has a blackjack hand, then surrender is not available.
+                </span>
             </div>
-
-
-            <h1 class="cardhead"> Surrender</h1>
-            <img src="WebPhotos\Surrender.png" alt="card_value" class="rules_img">
-            <p class="content">
-                This playing option is sometimes permitted. It allows a player to forfeit the hand immediately with an
-                automatic loss of half the original bet. In most venues, players can surrender their initial two-card
-                hand only after the dealer has checked his cards and ascertained that he doesn’t have a blackjack (known
-                as late surrender). Once a player draws a card, the surrender option is no longer available. If the
-                dealer has a blackjack hand, then surrender is not available.
-            </p>
         </div>
-
-
-
     </div>
     <footer id="section_about" class="foot">
         <!--<p style="color: white; font-size: 36px">&nbsp; Contact information:</p>
@@ -342,8 +313,6 @@
                 <a padding-left: 7px; href="https://twitter.com/?lang=en"><img src="Webphotos\t2.png" alt="tweet"></a> &nbsp
                 <a padding-left: 7px; href="https://www.whatsapp.com/\"><img src="Webphotos\whatsApp1.png" alt="Whatsapp"></a> &nbsp
             </span>
-
-
     </footer>
     <script>
         var modal1 = document.getElementById('id01');
@@ -352,7 +321,6 @@
         var modal4 = document.getElementById('id04');
         var modal5 = document.getElementById('id05');
         var modal6 = document.getElementById('id06');
-
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal1) {

@@ -1,11 +1,9 @@
 <?php
-
 # databse connection 
 $connect = mysqli_connect("localhost","root","","blackjackUD");
 
 if(isset($_POST['resetbtn']))
 {
-
     $email = $_POST['email'];
     $query = "SELECT * from user_details where user_address = '$email'";
     $chk_email =mysqli_query($connect,$query);
@@ -21,6 +19,5 @@ if(isset($_POST['resetbtn']))
         location.href='checkmail.html'; 
         </script>";
     }
-
 }
 ?>

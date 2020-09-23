@@ -19,9 +19,8 @@
     @font-face {
         /*https://www.fontspace.com/category/retro*/
         font-family: "crule";
-        src: url("fonts/Rancher.TTF");
+        src: url("fonts/Ranchers.TTF");
     }
-
 
     html {
         scroll-behavior: smooth;
@@ -34,8 +33,8 @@
         background-color: black;
         background-image: url("WebPhotos\\mess_bg1.jpg");
         background-attachment: fixed;
+        font-family: "RedDead", Arial;
     }
-
 
     body::-webkit-scrollbar {
         width: 7px;
@@ -47,8 +46,6 @@
         background-repeat: no-repeat;
         border-radius: 100%;
     }
-
-
 
     .navbar li,
     a,
@@ -66,7 +63,6 @@
         position: relative;
         top: 0;
     }
-
 
     header {
         display: flex;
@@ -154,7 +150,6 @@
         overflow: auto;
         background-color: rgb(0, 0, 0);
         background-color: rgb(0, 0, 0, 0.4);
-
     }
 
     .model-content {
@@ -167,6 +162,10 @@
         background-size: cover;
         background-position: center;
         margin: auto;
+    }
+
+    .victory_label {
+        font-family: "RedDead", Arial;
     }
 
     .logclose {
@@ -206,7 +205,6 @@
         color: red;
     }
 
-
     .profile {
         position: relative;
         left: 45px;
@@ -215,7 +213,6 @@
         margin: 12% 10%;
         border-radius: 10%;
         width: 50%;
-
     }
 
     label {
@@ -266,7 +263,6 @@
 
     }
 
-
     .game_space {
         background-image: url("WebPhotos\\table_bg1.png");
         height: 100vh;
@@ -287,11 +283,6 @@
         margin-top: -100px;
         margin-left: -100px;
     }
-
-
-
-
-
 
     .play {
         padding: 10px 25px;
@@ -338,10 +329,11 @@
         padding: 10px 25px;
         font-size: 28px;
         color: blue;
-
-
     }
 
+    .rules_modal {
+        font-family: "RedDead", Arial;
+    }
 
     .myhover {
         cursor: pointer;
@@ -358,16 +350,12 @@
         border-style: ridge;
         border-radius: 5%;
         border-color: black;
-
     }
 
     .rkeys {
         color: rgb(82, 8, 8);
         cursor: pointer;
     }
-
-
-
 
     .cards-rules {
         display: none;
@@ -383,7 +371,6 @@
         background-color: rgb(0, 0, 0, 0.4);
 
     }
-
 
     .cardhead {
         position: absolute;
@@ -401,11 +388,11 @@
         background-size: cover;
         background-position: center;
         margin: auto;
-
     }
 
     .content {
         position: relative;
+        font-family: "crule", Arial;
         font-size: 24px;
         left: 10%;
         top: 70px;
@@ -429,7 +416,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         display: inline-block;
-        height: 25%;
+        height: 35%;
         width: 100%;
     }
 
@@ -445,7 +432,7 @@
         font-size: 36px;
         position: relative;
         display: inline-block;
-        left: 41%;
+        left: 44%;
 
     }
 
@@ -454,6 +441,10 @@
         position: relative;
         left: 35%;
 
+    }
+
+    .bets {
+        visibility: visible;
     }
 
     .bets_label {
@@ -466,8 +457,6 @@
         position: absolute;
         float: left;
         left: 40vw;
-
-
     }
 
     .bets_area_remove {
@@ -475,7 +464,6 @@
         float: right;
         right: 65vw
     }
-
 
     /*Game section*/
     .dCards {
@@ -494,7 +482,7 @@
         position: relative;
         height: 15vh;
         width: 5vw;
-        top: 2vh;
+        top: -2vh;
         left: -33%;
         float: left;
         margin: 10px;
