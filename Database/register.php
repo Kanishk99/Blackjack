@@ -19,7 +19,6 @@ $n= mysqli_real_escape_string($connect,$n);# to prevent from sql injection secur
 $p= mysqli_real_escape_string($connect,$p);# to prevent from sql injection secured form
 $a= mysqli_real_escape_string($connect,$a);# to prevent from sql injection secured form
 
-
  $p = password_hash($p,PASSWORD_BCRYPT);
 
  $check_email = "SELECT * from user_details WHERE user_address = '$a'";
@@ -31,7 +30,6 @@ $a= mysqli_real_escape_string($connect,$a);# to prevent from sql injection secur
 
  $emailcount = mysqli_num_rows($email);
   
-
 $insert = "SELECT * from user_details where user_name = '$n' && user_password = '$p' && user_address = '$a' "; # query to chek the record exist or not in the databse
 $result = mysqli_query($connect,$insert) ; 
 $check_rows = mysqli_num_rows($result); # check the no of rows in the database
@@ -46,10 +44,8 @@ if($emailcount > 0 )
 }
 
 elseif ($nuser > 0) 
-{
-    
+{ 
     // echo " user name exist";
-    
     echo "<script> 
             alert('Username alredy exist! Please enter a unique Username!);
             location.href='../index.php'; 
@@ -63,17 +59,12 @@ elseif ($nuser > 0)
 
     $insert = " INSERT into user_details(user_name , user_password , user_address) values ('$n' , '$p' , '$a')";
      mysqli_query($connect,$insert); #  
-  
-     //echo "Your ID ".$connect-> insert_id;# to show Last inserted ID
-     
+     //echo "Your ID ".$connect-> insert_id;# to show Last inserted ID 
     echo "<script> 
             alert('REGISTERED')
             location.href='../index.php';
             </script>";
-
-    // echo "registerd";
-            
-            //header('location:login.html');
-    
+        // echo "registerd";    
+        //header('location:login.html');
 }
 ?>

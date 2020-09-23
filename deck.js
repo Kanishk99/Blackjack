@@ -7,7 +7,6 @@ divDealerIncrement = 1;
 divPlayerIncrement = 1;
 document.cookie = "user_victory=false";
 
-
 function shuffle(array) {
   /*
    * https://stackoverflow.com/a/12646864
@@ -29,7 +28,7 @@ function createDeck() {
       card = {};
       card.suit = suits[suitsIndex];
       card.rank = ranks[ranksIndex];
-      card.imagePath = "Cards PNG\\" + card.rank + card.suit + ".png";
+      card.imagePath = "Cards PNG\\" + card.rank + card.suit + ".png"; 
       card.value = setValue();
       //document.getElementById(card).className += "cards";
       deck.push(card);
@@ -63,8 +62,6 @@ function disableButtons(str) {
     document.getElementById("retry").style.visibility = "hidden";
   }
 }
-
-
 
 function checkBustPlayer() {
   if (playerTotal > 21) {
@@ -108,7 +105,7 @@ function playerTurn() {
   setImage(playerCards.imagePath, divPlayer);
   /*document.getElementById(divPlayer).innerHTML += "<BR>";
   document.getElementById(divPlayer).innerHTML += playerCards.rank + playerCards.suit;*/
-  document.getElementById(divPlayer).innerHTML += " Total : " + playerTotal;
+  document.getElementById('total').innerHTML = " Total : " + playerTotal;
   divPlayerIncrement++;
   checkBustPlayer();
 }
@@ -136,32 +133,32 @@ function dealerTurn() {
   setImage(dealerCards.imagePath, divDealer);
   /*document.getElementById(divDealer).innerHTML += "<BR>";
   document.getElementById(divDealer).innerHTML += dealerCards.rank + dealerCards.suit;*/
-  document.getElementById(divDealer).innerHTML += " Total : " + dealerTotal;
+  //document.getElementById(divDealer).innerHTML += " Total : " + dealerTotal;
   divDealerIncrement++;
   checkBustDealer();
 }
 
 function checkVictory() {
   if (playerTotal > 21) {
-    document.getElementById("victory_label").innerHTML += "Dealer wins!";
+    document.getElementById("victory_label").innerHTML = "Dealer wins!";
   } else if (dealerTotal > 21) {
     document.cookie = "user_victory=true";
-    document.getElementById("victory_label").innerHTML += "Player wins!";
+    document.getElementById("victory_label").innerHTML = "Player wins!";
   } else if (playerTotal > dealerTotal && (!checkBustPlayer())) {
     document.cookie = "user_victory=true";
-    document.getElementById("victory_label").innerHTML += "Player wins!";
+    document.getElementById("victory_label").innerHTML = "Player wins!";
   } else if (dealerTotal > playerTotal && (!checkBustDealer())) {
     document.cookie = "user_victory=false";
-    document.getElementById("victory_label").innerHTML += "Dealer wins!";
+    document.getElementById("victory_label").innerHTML = "Dealer wins!";
   } else if (playerTotal == dealerTotal) {
-    document.getElementById("victory_label").innerHTML += "PUSH!";
+    document.getElementById("victory_label").innerHTML = "PUSH!";
     //Game resets -> Deal beings again with previous money added to total
   }
-
 }
 
 function startGame() {
   disableButtons("visible");
+  document.getElementsByClassName('bets').visibility = "hidden";
   createDeck();
   shuffle(deck);
   dealerTurn();
