@@ -1,1 +1,1 @@
-A card-game based on blackjack created with javascript for the 6th semester project.
+A website to play blackjack created with JS/HTML/PHP for my 6th semester project.
